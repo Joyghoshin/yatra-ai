@@ -126,7 +126,7 @@ const { data: weather } = useWeather(weatherLat, weatherLon, weatherTimezone, st
   const stateName = isInternational ? selectedIntlCity?.country : selectedCity?.state || "";
   if (!cityName) return;
 
- await saveTrip({
+await saveTrip({
   userId: user.userId,
   city: cityName,
   state: stateName,
@@ -134,7 +134,7 @@ const { data: weather } = useWeather(weatherLat, weatherLon, weatherTimezone, st
   endDate,
   aiRecommendations: reco ? JSON.stringify(reco) : undefined,
   weatherData: weather ? JSON.stringify(weather) : undefined,
-  travelMode,
+  travelMode: travelMode as string,  // ✅ fix
   countryOrState: stateName,
   lat: isInternational ? (selectedIntlCity?.lat ?? 0) : (selectedCity?.lat ?? 0),
   lon: isInternational ? (selectedIntlCity?.lon ?? 0) : (selectedCity?.lon ?? 0),
