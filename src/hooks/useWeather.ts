@@ -78,4 +78,3 @@ export function useWeather(lat?: number, lon?: number, timezone?: string, startD
   });
 }
 
-export type { WeatherDay };

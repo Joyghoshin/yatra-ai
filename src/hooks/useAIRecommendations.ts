@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { WeatherDay } from "./useWeather";
+import type { WeatherDay } from "./useWeather";
 import { getWeatherDesc } from "../lib/utils";
 
 function buildWeatherSummary(weather: WeatherDay[]): string {

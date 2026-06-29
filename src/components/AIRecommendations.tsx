@@ -62,7 +62,7 @@ export function AIRecommendations() {
   } = useTripStore();
   const { user } = useAuthStore();
   const isInternational = travelMode === "international";
-  const { restoredReco, restoredWeather, clearRestored } = useTripStore();
+  const { restoredReco, clearRestored } = useTripStore();
 
 const weatherLat = isInternational ? selectedIntlCity?.lat : selectedCity?.lat;
 const weatherLon = isInternational ? selectedIntlCity?.lon : selectedCity?.lon;
@@ -126,21 +126,21 @@ const { data: weather } = useWeather(weatherLat, weatherLon, weatherTimezone, st
   const stateName = isInternational ? selectedIntlCity?.country : selectedCity?.state || "";
   if (!cityName) return;
 
-  await saveTrip({
-    userId: user.userId,
-    city: cityName,
-    state: stateName,
-    startDate,
-    endDate,
-    aiRecommendations: reco ? JSON.stringify(reco) : undefined,
-    weatherData: weather ? JSON.stringify(weather) : undefined,
-    travelMode,
-    countryOrState: stateName,
-    lat: isInternational ? selectedIntlCity?.lat : selectedCity?.lat,
-    lon: isInternational ? selectedIntlCity?.lon : selectedCity?.lon,
-    timezone: isInternational ? selectedIntlCity?.timezone : "Asia/Kolkata",
-    currency: isInternational ? selectedIntlCity?.currency : undefined,
-  });
+ await saveTrip({
+  userId: user.userId,
+  city: cityName,
+  state: stateName,
+  startDate,
+  endDate,
+  aiRecommendations: reco ? JSON.stringify(reco) : undefined,
+  weatherData: weather ? JSON.stringify(weather) : undefined,
+  travelMode,
+  countryOrState: stateName,
+  lat: isInternational ? (selectedIntlCity?.lat ?? 0) : (selectedCity?.lat ?? 0),
+  lon: isInternational ? (selectedIntlCity?.lon ?? 0) : (selectedCity?.lon ?? 0),
+  timezone: isInternational ? (selectedIntlCity?.timezone ?? "UTC") : "Asia/Kolkata",
+  currency: isInternational ? selectedIntlCity?.currency : undefined,
+});
 
   setSaved(true);
   setTimeout(() => setSaved(false), 3000);

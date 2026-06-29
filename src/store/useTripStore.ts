@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { INDIAN_CITIES } from "../lib/indianCities";
-import { INTERNATIONAL_CITIES } from "../lib/internationalCities";
+
 import type { InternationalCity } from "../lib/internationalCities";
 
 export type IndianCity = typeof INDIAN_CITIES[0];
