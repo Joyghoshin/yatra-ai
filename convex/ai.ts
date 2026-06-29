@@ -14,7 +14,7 @@ export const getAIRecommendations = action({
     currency: v.optional(v.string()),
   },
   handler: async (_, args) => {
-    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY! });
 
     const indiaPrompt = [
       "You are an expert India travel advisor.",

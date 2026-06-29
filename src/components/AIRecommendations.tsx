@@ -123,7 +123,9 @@ const { data: weather } = useWeather(weatherLat, weatherLon, weatherTimezone, st
  const handleSave = async () => {
   if (!user) return;
   const cityName = isInternational ? selectedIntlCity?.name : selectedCity?.city;
-  const stateName = isInternational ? selectedIntlCity?.country : selectedCity?.state || "";
+  const stateName = isInternational 
+    ? (selectedIntlCity?.country ?? "") 
+    : (selectedCity?.state ?? "");
   if (!cityName) return;
 
 await saveTrip({
