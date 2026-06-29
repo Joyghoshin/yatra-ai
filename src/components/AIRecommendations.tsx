@@ -121,7 +121,7 @@ const { data: weather } = useWeather(weatherLat, weatherLon, weatherTimezone, st
   }, [restoredReco]);
 
  const handleSave = async () => {
-  if (!user) return;
+ if (!user?.userId) return;
   const cityName = isInternational ? selectedIntlCity?.name : selectedCity?.city;
   const stateName = isInternational 
     ? (selectedIntlCity?.country ?? "") 
